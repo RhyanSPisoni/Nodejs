@@ -3,9 +3,21 @@
 const mongoose = require('mongoose');
 const Product = mongoose.model('Product');
 
+exports.get = (req, res, next) => {
+    Product.find(
+        {active : true}, //Campo filtrado
+        "title price slug" //campos que serão trazidos
+        ) 
+        .then(data => {
+            res.status(200).send(data);
+        }).catch(e => {
+            res.status(400).send({ message: 'Falha ao encontrar o produto!', data: e });
+        });
+}
+
 exports.post = (req, res, next) => {
     console.log("a");
-    
+
     var product = new Product(req.body);
     product.save()
         .then(x => {
