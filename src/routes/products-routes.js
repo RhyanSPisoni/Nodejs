@@ -10,7 +10,6 @@ router.put('/:id', controller.put);
 
 router.delete('/', controller.delete);
 
-//
 router.post('/teste', controller.teste);
 
 module.exports = router
